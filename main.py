@@ -1,5 +1,6 @@
 import numpy as np
 import argparse
+import time
 from sise import bfs, dfs, node
 
 
@@ -23,7 +24,9 @@ if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
     directions = args.order
 
 if args.algorithm == 'bfs':
+  start = time.time()
   solution_bfs = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
+  end = time.time()
 
   if solution_bfs is None:
       print('Something went wrong')
@@ -32,6 +35,8 @@ if args.algorithm == 'bfs':
       print(str(mock_data))
       print('Data after bfs:')
       print(str(solution_bfs.data))
+      print('Execution time')
+      print(end - start)
 
       correct_moves = []
       while solution_bfs.parent is not None:
@@ -44,7 +49,9 @@ if args.algorithm == 'bfs':
       print(str(correct_moves))
 
 elif args.algorithm == 'dfs':
+  start = time.time()
   solution_dfs = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
+  end = time.time()
 
   if solution_dfs is None:
       print('Something went wrong')
@@ -53,6 +60,8 @@ elif args.algorithm == 'dfs':
       print(str(mock_data))
       print('Data after dfs:')
       print(str(solution_dfs.data))
+      print('Execution time')
+      print(end - start)
 
       correct_moves = []
       while solution_dfs.parent is not None:
