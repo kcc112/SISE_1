@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Node:
     def __init__(self, node_number, data, parent, direction):
         self.data = data
@@ -30,7 +29,7 @@ def move_left(data):
 
 def move_right(data):
     i, j = find_index(data)
-    if j == 2:
+    if j == 3:
         return None
     else:
         temp_arr = np.copy(data)
@@ -54,7 +53,7 @@ def move_up(data):
 
 def move_down(data):
     i, j = find_index(data)
-    if i == 2:
+    if i == 3:
         return None
     else:
         temp_arr = np.copy(data)

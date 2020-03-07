@@ -2,9 +2,9 @@ import numpy as np
 from sise import bfs, dfs, node
 
 # Puzzle to solve
-mock_data = np.array([[1, 2, 3], [4, 5, 6], [0, 7, 8]])
+mock_data = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]])
 # What we want at the end
-goal_node = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
+goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [0, 13, 14, 15]])
 directions = ['D', 'U', 'L', 'R']
 
 root_node = node.Node(node_number=0, data=mock_data, parent=None, direction=None)
