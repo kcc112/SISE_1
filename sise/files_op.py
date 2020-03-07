@@ -17,7 +17,11 @@ def write_to_solution_file(filename, moves):
     file.write(output)
   file.close()
 
-def write_info_to_file(filename, moves):
+def write_info_to_file(filename, moves, time):
   file = open(filename, 'w')
-  # TODO
+  if moves is None:
+    file.write(str(-1) + '\n')
+  else:
+    file.write(str(len(moves)) + '\n')
+  file.write(str(time) + '\n')
   file.close()

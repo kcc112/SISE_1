@@ -34,12 +34,16 @@ if args.algorithm == 'bfs':
   solution_bfs = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
   end = time.time()
 
+  final_time = end - start
+
   if solution_bfs is None:
       print('Something went wrong')
       if args.file_solution:
-        files_op.write_to_solution_file( args.file_solution, None)
+        files_op.write_to_solution_file(args.file_solution, None)
+        files_op.write_info_to_file(args.file_solution, None, final_time)
       else:
         files_op.write_to_solution_file('./files/solution.txt', None)
+        files_op.write_info_to_file('./files/info.txt', None, final_time)
   else:
       print('Data before bfs:')
       print(str(mock_data))
@@ -56,8 +60,10 @@ if args.algorithm == 'bfs':
       correct_moves.reverse()
       if args.file_solution:
         files_op.write_to_solution_file( args.file_solution, correct_moves)
+        files_op.write_info_to_file(args.file_solution, correct_moves, final_time)
       else:
         files_op.write_to_solution_file('./files/solution.txt', correct_moves)
+        files_op.write_info_to_file('./files/info.txt', correct_moves, final_time)
       print('Moves list:')
       print(str(correct_moves))
 
@@ -66,12 +72,16 @@ elif args.algorithm == 'dfs':
   solution_dfs = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
   end = time.time()
 
+  final_time = end - start
+
   if solution_dfs is None:
       print('Something went wrong')
       if args.file_solution:
-        files_op.write_to_solution_file( args.file_solution, correct_moves)
+        files_op.write_to_solution_file(args.file_solution, correct_moves)
+        files_op.write_info_to_file(args.file_solution, None, final_time)
       else:
         files_op.write_to_solution_file('./files/solution.txt', correct_moves)
+        files_op.write_info_to_file('./files/info.txt', None, final_time)
   else:
       print('Data before dfs:')
       print(str(mock_data))
@@ -87,8 +97,10 @@ elif args.algorithm == 'dfs':
 
       correct_moves.reverse()
       if args.file_solution:
-        files_op.write_to_solution_file( args.file_solution, None)
+        files_op.write_to_solution_file( args.file_solution, correct_moves)
+        files_op.write_info_to_file(args.file_solution, correct_moves, final_time)
       else:
-        files_op.write_to_solution_file('./files/solution.txt', None)
+        files_op.write_to_solution_file('./files/solution.txt', correct_moves)
+        files_op.write_info_to_file('./files/info.txt', correct_moves, final_time)
       print('Moves list:')
       print(str(correct_moves))
