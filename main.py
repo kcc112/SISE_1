@@ -12,10 +12,15 @@ directions = ['D', 'U', 'L', 'R']
 parser = argparse.ArgumentParser()
    
 parser.add_argument('-a', '--algorithm', help='Choose bfs or dfs astr', required=True)
+parser.add_argument('-o', '--order', help='Choose order default: UDLR', required=False)
 
 args = parser.parse_args()
 
 root_node = node.Node(node_number=0, data=mock_data, parent=None, direction=None)
+
+
+if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
+    directions = args.order
 
 if args.algorithm == 'bfs':
   solution_bfs = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
