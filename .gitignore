@@ -1,2 +1,6 @@
 venv
 .vscode
+puzzlegen.jar
+files/solution.txt
+files/info.txt
+sise/__pycache__

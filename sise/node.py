@@ -27,9 +27,9 @@ def move_left(data):
         return temp_arr
 
 
-def move_right(data):
+def move_right(data, border):
     i, j = find_index(data)
-    if j == 3:
+    if j == border:
         return None
     else:
         temp_arr = np.copy(data)
@@ -51,9 +51,9 @@ def move_up(data):
         return temp_arr
 
 
-def move_down(data):
+def move_down(data, border):
     i, j = find_index(data)
-    if i == 3:
+    if i == border:
         return None
     else:
         temp_arr = np.copy(data)
@@ -67,10 +67,10 @@ def move(direction, data):
     if direction == 'U':
       return move_up(data)
     if direction == 'D':
-      return move_down(data)
+      return move_down(data, data.shape[0] - 1)
     if direction == 'L':
       return move_left(data)
     if direction == 'R':
-      return move_right(data)
+      return move_right(data, data.shape[1] - 1)
     else:
       return None
