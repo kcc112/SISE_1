@@ -31,7 +31,7 @@ if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
 
 if args.algorithm == 'bfs':
   start = time.time()
-  solution_bfs = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
+  solution_bfs, visited_count, processed_count, max_depth = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
   end = time.time()
 
   final_time = end - start
