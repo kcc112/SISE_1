@@ -1,6 +1,8 @@
 from .node import Node, move
 
 def solve_puzzle_bfs(node, directions, goal_node):
+    max_depth = 20
+    node.cur_depth = 0
     node_queue = [node]
     visited_nodes = []
     visited_nodes.append(node_queue[0].data.tolist())
@@ -11,17 +13,18 @@ def solve_puzzle_bfs(node, directions, goal_node):
         
         if current_root.data.tolist() == goal_node.tolist():
             return current_root
+        if current_root.cur_depth != max_depth:
+            for direction in directions:
+                new_data = move(direction, current_root.data)
 
-        for direction in directions:
-            new_data = move(direction, current_root.data)
+                if new_data is not None:
+                    node_counter += 1
+                    child_node = Node(node_counter, new_data, current_root, direction)
+                    child_node.cur_depth = current_root.cur_depth + 1
 
-            if new_data is not None:
-                node_counter += 1
-                child_node = Node(node_counter, new_data, current_root, direction)
-
-                if child_node.data.tolist() not in visited_nodes:
-                    node_queue.append(child_node)
-                    visited_nodes.append(child_node.data.tolist())
-                    if child_node.data.tolist() == goal_node.tolist():
-                        return child_node
+                    if child_node.data.tolist() not in visited_nodes:
+                        node_queue.append(child_node)
+                        visited_nodes.append(child_node.data.tolist())
+                        if child_node.data.tolist() == goal_node.tolist():
+                            return child_node
     return None
