@@ -69,7 +69,7 @@ if args.algorithm == 'bfs':
 
 elif args.algorithm == 'dfs':
   start = time.time()
-  solution_dfs = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
+  solution_dfs, highest_depth = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
   end = time.time()
 
   final_time = end - start
@@ -77,10 +77,10 @@ elif args.algorithm == 'dfs':
   if solution_dfs is None:
       print('Something went wrong')
       if args.file_solution:
-        files_op.write_to_solution_file(args.file_solution, correct_moves)
+        files_op.write_to_solution_file(args.file_solution, None)
         files_op.write_info_to_file(args.file_solution, None, final_time)
       else:
-        files_op.write_to_solution_file('./files/solution.txt', correct_moves)
+        files_op.write_to_solution_file('./files/solution.txt', None)
         files_op.write_info_to_file('./files/info.txt', None, final_time)
   else:
       print('Data before dfs:')
