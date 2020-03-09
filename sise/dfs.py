@@ -15,7 +15,7 @@ def solve_puzzle_dfs(node, directions, goal_node):
             new_data = move(direction, route.data)
             
             if new_data is not None and is_opposite_direction(direction, route.direction) is False:
-                child_node = Node(1, new_data, route, direction)
+                child_node = Node(new_data, route, direction)
                 stack_node.append(child_node)
                 depth[0] += 1
                 next_route = dfs(stack_node[-1], depth)

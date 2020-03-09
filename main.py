@@ -24,7 +24,7 @@ args = parser.parse_args()
 
 mock_data = files_op.parse_array_from_file(args.file)
 
-root_node = node.Node(node_number=0, data=mock_data, parent=None, direction=None)
+root_node = node.Node(data=mock_data, parent=None, direction=None)
 
 if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
     directions = args.order

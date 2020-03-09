@@ -6,7 +6,6 @@ def solve_puzzle_bfs(node, directions, goal_node):
     node_queue = [node]
     visited_nodes = []
     visited_nodes.append(node_queue[0].data.tolist())
-    node_counter = 0
     processed_counter = 0
 
     while node_queue:
@@ -19,8 +18,7 @@ def solve_puzzle_bfs(node, directions, goal_node):
                 new_data = move(direction, current_root.data)
                 processed_counter += 1
                 if new_data is not None:
-                    node_counter += 1
-                    child_node = Node(node_counter, new_data, current_root, direction)
+                    child_node = Node(new_data, current_root, direction)
                     child_node.cur_depth = current_root.cur_depth + 1
 
                     if child_node.data.tolist() not in visited_nodes:

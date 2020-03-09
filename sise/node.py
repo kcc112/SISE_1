@@ -1,11 +1,10 @@
 import numpy as np
 
 class Node:
-    def __init__(self, node_number, data, parent, direction):
+    def __init__(self, data, parent, direction):
         self.data = data
         self.parent = parent
         self.direction = direction
-        self.node_number = node_number
 
 
 def find_index(array):
