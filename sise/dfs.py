@@ -19,7 +19,7 @@ def solve_puzzle_dfs(node, directions, goal_node):
                 stack_node.append(child_node)
                 depth[0] += 1
                 next_route = dfs(stack_node[-1], depth)
-                
+                depth[0] -= 1
                 if next_route:
                     return next_route
 
