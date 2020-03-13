@@ -9,7 +9,8 @@ from sise import bfs, dfs, node, files_op
 # mock_data = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [0, 9, 10, 11]])
 # What we want at the end
 # goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 0]])
-goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]])
+# goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]])
+goal_node = np.array([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]])
 directions = ['D', 'U', 'L', 'R']
 
 parser = argparse.ArgumentParser()
