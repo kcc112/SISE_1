@@ -73,3 +73,16 @@ def move(direction, data):
       return move_right(data, data.shape[1] - 1)
     else:
       return None
+
+
+def is_opposite_direction(direction1, direction2):
+    if direction1 == 'U' and direction2 == 'D':
+        return True
+    if direction1 == 'D' and direction2 == 'U':
+        return True
+    if direction1 == 'L' and direction2 == 'R':
+        return True
+    if direction1 == 'R' and direction2 == 'L':
+        return True
+    else:
+        return False

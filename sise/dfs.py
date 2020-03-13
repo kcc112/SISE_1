@@ -14,7 +14,7 @@ def solve_puzzle_dfs(node, directions, goal_node):
         for direction in directions:
             new_data = move(direction, route.data)
             
-            if new_data is not None and is_opposite_direction(direction, route.direction) is False:
+            if new_data is not None and node.is_opposite_direction(direction, route.direction) is False:
                 child_node = Node(new_data, route, direction)
                 stack_node.append(child_node)
                 depth[0] += 1
@@ -34,16 +34,3 @@ def solve_puzzle_dfs(node, directions, goal_node):
             current_depth[0] -= 1
 
     return None, highest_depth
-
-
-def is_opposite_direction(direction1, direction2):
-    if direction1 == 'U' and direction2 == 'D':
-        return True
-    if direction1 == 'D' and direction2 == 'U':
-        return True
-    if direction1 == 'L' and direction2 == 'R':
-        return True
-    if direction1 == 'R' and direction2 == 'L':
-        return True
-    else:
-        return False
