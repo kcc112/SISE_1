@@ -15,7 +15,7 @@ directions = ['D', 'U', 'L', 'R']
 
 parser = argparse.ArgumentParser()
    
-parser.add_argument('-a', '--algorithm', help='Choose bfs or dfs astr', required=True)
+parser.add_argument('-a', '--algorithm', help='Choose bfs, dfs, manh or hamm', required=True)
 parser.add_argument('-o', '--order', help='Choose order default: UDLR', required=False)
 parser.add_argument('-f', '--file', help='File with start data', required=True)
 parser.add_argument('-fs', '--file_solution', help='File with solution', required=False)
@@ -30,13 +30,18 @@ root_node = node.Node(data=mock_data, parent=None, direction=None)
 if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
     directions = args.order
 used_algorithm = None
+solution, max_depth = (0, 0)
+start = time.time()
 
 if args.algorithm == 'bfs':
-    used_algorithm = bfs.solve_puzzle_bfs
+    solution, max_depth = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
 elif args.algorithm == 'dfs':
-    used_algorithm = dfs.solve_puzzle_dfs
-start = time.time()
-solution, max_depth = used_algorithm(root_node, directions, goal_node)
+    solution, max_depth = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
+elif args.algorithm == 'manh':
+    solution, max_depth = astar.solve_puzzle_astar(root_node, manh.calc_manh_dist)
+elif args.algorithm == 'hamm':
+    solution, max_depth = astar.solve_puzzle_astar(root_node, hamm.calc_hamm_dist)
+
 end = time.time()
 
 final_time = end - start
