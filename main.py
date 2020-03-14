@@ -1,7 +1,7 @@
 import numpy as np
 import argparse
 import time
-from sise import bfs, dfs, node, files_op
+from sise import bfs, dfs, node, files_op, manh, hamm, astar
 
 
 # Puzzle to solve
@@ -32,7 +32,7 @@ if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
 
 if args.algorithm == 'bfs':
   start = time.time()
-  solution_bfs, visited_count, processed_count, max_depth = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
+  solution_bfs, max_depth = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
   end = time.time()
 
   final_time = end - start
