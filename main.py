@@ -29,79 +29,45 @@ root_node = node.Node(data=mock_data, parent=None, direction=None)
 
 if args.order and sorted(args.order) == ['D', 'L', 'R', 'U']:
     directions = args.order
+used_algorithm = None
 
 if args.algorithm == 'bfs':
-  start = time.time()
-  solution_bfs, max_depth = bfs.solve_puzzle_bfs(root_node, directions, goal_node)
-  end = time.time()
-
-  final_time = end - start
-
-  if solution_bfs is None:
-      print('Something went wrong')
-      if args.file_solution:
-        files_op.write_to_solution_file(args.file_solution, None)
-        files_op.write_info_to_file(args.file_solution, None, final_time)
-      else:
-        files_op.write_to_solution_file('./files/solution.txt', None)
-        files_op.write_info_to_file('./files/info.txt', None, final_time)
-  else:
-      print('Data before bfs:')
-      print(str(mock_data))
-      print('Data after bfs:')
-      print(str(solution_bfs.data))
-      print('Execution time')
-      print(end - start)
-
-      correct_moves = []
-      while solution_bfs.parent is not None:
-        correct_moves.append(solution_bfs.direction)
-        solution_bfs = solution_bfs.parent
-
-      correct_moves.reverse()
-      if args.file_solution:
-        files_op.write_to_solution_file( args.file_solution, correct_moves)
-        files_op.write_info_to_file(args.file_solution, correct_moves, final_time)
-      else:
-        files_op.write_to_solution_file('./files/solution.txt', correct_moves)
-        files_op.write_info_to_file('./files/info.txt', correct_moves, final_time)
-      print('Moves list:')
-      print(str(correct_moves))
-
+    used_algorithm = bfs.solve_puzzle_bfs
 elif args.algorithm == 'dfs':
-  start = time.time()
-  solution_dfs, highest_depth = dfs.solve_puzzle_dfs(root_node, directions, goal_node)
-  end = time.time()
+    used_algorithm = dfs.solve_puzzle_dfs
+start = time.time()
+solution, max_depth = used_algorithm(root_node, directions, goal_node)
+end = time.time()
 
-  final_time = end - start
+final_time = end - start
 
-  if solution_dfs is None:
-      print('Something went wrong')
-      if args.file_solution:
+if solution is None:
+    print('Something went wrong')
+    if args.file_solution:
         files_op.write_to_solution_file(args.file_solution, None)
         files_op.write_info_to_file(args.file_solution, None, final_time)
-      else:
+    else:
         files_op.write_to_solution_file('./files/solution.txt', None)
         files_op.write_info_to_file('./files/info.txt', None, final_time)
-  else:
-      print('Data before dfs:')
-      print(str(mock_data))
-      print('Data after dfs:')
-      print(str(solution_dfs.data))
-      print('Execution time')
-      print(end - start)
+else:
+    print('Data before solving:')
+    print(str(mock_data))
+    print('Data after solving:')
+    print(str(solution.data))
+    print('Execution time')
+    print(end - start)
 
-      correct_moves = []
-      while solution_dfs.parent is not None:
-        correct_moves.append(solution_dfs.direction)
-        solution_dfs = solution_dfs.parent
+    correct_moves = []
+    while solution.parent is not None:
+        correct_moves.append(solution.direction)
+        solution = solution.parent
 
-      correct_moves.reverse()
-      if args.file_solution:
-        files_op.write_to_solution_file( args.file_solution, correct_moves)
+    correct_moves.reverse()
+    if args.file_solution:
+        files_op.write_to_solution_file(args.file_solution, correct_moves)
         files_op.write_info_to_file(args.file_solution, correct_moves, final_time)
-      else:
+    else:
         files_op.write_to_solution_file('./files/solution.txt', correct_moves)
         files_op.write_info_to_file('./files/info.txt', correct_moves, final_time)
-      print('Moves list:')
-      print(str(correct_moves))
+    print('Moves list:')
+    print(str(correct_moves))
