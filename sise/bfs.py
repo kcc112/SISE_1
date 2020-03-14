@@ -1,4 +1,5 @@
-from .node import Node, move
+from .node import Node, move, is_opposite_direction
+
 
 def solve_puzzle_bfs(node, directions, goal_node):
     max_depth = 20
@@ -13,6 +14,8 @@ def solve_puzzle_bfs(node, directions, goal_node):
             return current_root, current_root.cur_depth
         if current_root.cur_depth != max_depth:
             for direction in directions:
+                if is_opposite_direction(direction, current_root.direction):
+                    continue
                 new_data = move(direction, current_root.data)
 
                 if new_data is not None:
