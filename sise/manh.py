@@ -6,8 +6,8 @@ def calc_manh_dist(node):
     width = len(node.data[0])
     for i in range(0, width):
         for j in range(0, height):
-            correct_i = node.data[i][j] // 4
-            correct_j = node.data[i][j] % 4
+            correct_i = node.data[i][j] // height
+            correct_j = node.data[i][j] % width
             dist += abs(correct_i - i)
             dist += abs(correct_j - j)
     return dist
