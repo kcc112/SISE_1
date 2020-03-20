@@ -6,6 +6,12 @@ class Node:
         self.parent = parent
         self.direction = direction
 
+    def __lt__(self, other):
+        return False
+
+    def __le__(self, other):
+        return False
+
 
 def find_index(array):
     i, j = np.where(array == 0)
