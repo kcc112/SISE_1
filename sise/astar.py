@@ -26,6 +26,6 @@ def solve_puzzle_astar(root_node, heuristic):
         solution_node = astar_step(next_node)
 
         if solution_node is not None:
-            return solution_node, depth
+            return solution_node, highest_depth
 
 
