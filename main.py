@@ -10,7 +10,7 @@ from sise import bfs, dfs, node, files_op, manh, hamm, astar
 # What we want at the end
 # goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 0]])
 # goal_node = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]])
-goal_node = np.array([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]])
+# goal_node = np.array([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]])
 directions = ['D', 'U', 'L', 'R']
 
 parser = argparse.ArgumentParser()
@@ -24,6 +24,12 @@ parser.add_argument('-fi', '--file_info', help='File with operation info', requi
 args = parser.parse_args()
 
 mock_data = files_op.parse_array_from_file(args.file)
+
+goal_node = np.copy(mock_data)
+
+for i in range(0, len(goal_node)):
+    for j in range(0, len(goal_node[0])):
+        goal_node[i][j] = i * len(goal_node[0]) + j
 
 root_node = node.Node(data=mock_data, parent=None, direction=None)
 
