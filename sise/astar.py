@@ -6,6 +6,7 @@ def solve_puzzle_astar(root_node, heuristic):
     priority_queue = []
     depth = 0
     heapq.heappush(priority_queue, (heuristic(root_node), 0, root_node))
+    visited_nodes = []
     highest_depth = 0
 
     def astar_step(current_node):
@@ -21,11 +22,13 @@ def solve_puzzle_astar(root_node, heuristic):
 
     while True:
         heuristic_value, depth, next_node = heapq.heappop(priority_queue)
-        if highest_depth < depth:
-            highest_depth = depth
-        solution_node = astar_step(next_node)
+        if next_node.data.tolist() not in visited_nodes:
+            visited_nodes.append(next_node.data.tolist())
+            if highest_depth < depth:
+                highest_depth = depth
+            solution_node = astar_step(next_node)
 
-        if solution_node is not None:
-            return solution_node, highest_depth
+            if solution_node is not None:
+                return solution_node, highest_depth
 
 
