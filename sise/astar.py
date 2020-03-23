@@ -5,19 +5,19 @@ from sise import node
 def solve_puzzle_astar(root_node, heuristic):
     priority_queue = []
     depth = 0
-    heapq.heappush(priority_queue, (heuristic(root_node), 0, root_node))
+    heapq.heappush(priority_queue, (heuristic(root_node, root_node), 0, root_node))
     visited_nodes = []
     highest_depth = 0
 
     def astar_step(current_node):
-        if heuristic(current_node) == 0:
+        if heuristic(current_node, current_node) == 0:
             return current_node
         for direction in ['D', 'L', 'U', 'R']:
             new_data = node.move(direction, current_node.data)
 
             if new_data is not None and node.is_opposite_direction(direction, current_node.direction) is False:
                 child_node = node.Node(new_data, current_node, direction)
-                heapq.heappush(priority_queue, (heuristic(child_node), depth + 1, child_node))
+                heapq.heappush(priority_queue, (heuristic(child_node, root_node), depth + 1, child_node))
         return None
 
     while True:
